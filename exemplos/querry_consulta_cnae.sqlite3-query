@@ -1,0 +1,18 @@
+-- database: ../dados-publicos/cnpj.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+SELECT 
+    e.*,
+    m.descricao AS nome_municipio,
+    c.descricao AS nome_cnae
+FROM estabelecimento e
+JOIN municipio m ON m.codigo = e.municipio
+JOIN cnae c ON c.codigo = e.cnae_fiscal
+WHERE e.situacao_cadastral = '02'
+AND e.uf = 'SP'
+AND (
+    e.cnae_fiscal = '5211799'
+    OR e.cnae_fiscal_secundaria LIKE '%5211799%'
+);
+
+SELECT * FROM estabelecimento WHERE cnpj = '41273590401434';

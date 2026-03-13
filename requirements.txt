@@ -10,3 +10,5 @@ parfive
 lxml
 pyarrow
 psutil
+openpyxl
+ipykernel
