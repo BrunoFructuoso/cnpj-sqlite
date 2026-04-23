@@ -1,0 +1,22 @@
+-- database: ../dados-publicos/exp_cnpj.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT
+    e.*,
+    m.exp_description AS nome_municipio,
+    c.exp_description AS nome_cnae
+FROM exp_establishment e
+JOIN exp_municipality m ON m.exp_code = e.exp_municipality
+JOIN exp_cnae c ON c.exp_code = e.exp_primary_cnae
+WHERE e.exp_registration_status = '02'
+  AND e.exp_state = 'SP'
+  AND e.exp_municipality = '7107'
+  AND e.exp_primary_cnae IN ('5211702','4751201','4930201','9512600')
+  AND substr(e.exp_zip_code, 1, 3) IN (
+      '010','011','012','013','014','015',
+      '022','023',
+      '030','031','032','033','034','035','036','037','039',
+      '040','041','042','043','044','045','046','047',
+      '050','053','054','056','057','058'
+  );
